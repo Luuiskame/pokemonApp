@@ -1,25 +1,21 @@
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
-function Card({pokemons}){
+function Card({id,image,type,name}){
+
     return(
-        <>
-            {pokemons.map(pokemon=>{
-                return(
-                    <ul key={pokemon.id}>
-                        <li>
-                            <h2>name: {pokemon.name}</h2>
-                            <p>id: {pokemon.id}</p>
-                            <div className="imageContainer">
-                            <img src={pokemon.image} alt={pokemon.name}/>
-                            </div>
-                        </li>
-                        <Link to={`/detail/${pokemon.id}`}>
-                            <button>About</button> 
-                        </Link>
-                    </ul>
-                )
-            })}
-        </>
+        <div key={id}>
+            <Link to={`/detail/${id}`}>
+            <button>About</button>
+            </Link>
+            <p>{id}</p>
+            <div>
+                <img src={image} alt={name} />
+            </div>
+            <h2>{name}</h2>
+            <p>{type}</p>
+        </div>
     )
 } 
 
