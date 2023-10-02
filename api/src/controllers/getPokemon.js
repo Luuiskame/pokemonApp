@@ -7,6 +7,7 @@ async function getPokemon(url){
         const response = await axios(url)
         const data = response.data
 
+
         const pokemonData = {
             id: data.id,
             name: data.name,
@@ -15,6 +16,7 @@ async function getPokemon(url){
             attack: data.stats[1].base_stat,
             defense: data.stats[2].base_stat,
             speed: data.stats[5].base_stat,
+            type: data.types[0].type.name,
             height: data.height,
             weight: data.weight,
         }
@@ -28,12 +30,15 @@ async function getPokemon(url){
 async function getAllPokemon(req,res){
     try {
         // this gonna be limit of pokemons we need when rendering the page
-        const {limit = 10} = req.body
-        const URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+        const {page = 1, limit=12} = req.body
+        const offset = (page-1) * limit
+        const URL = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&&limit=${limit}`
         const response = await axios(URL)
         const data = response.data
         // results is an array with the name and url properties inside
         const pokemonList = data.results
+
+
 
         const pokemonDataList = []
 

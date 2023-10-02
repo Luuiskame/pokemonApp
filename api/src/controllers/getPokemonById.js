@@ -9,7 +9,7 @@ async function getPokemonById(req,res){
 
         const uuidPattern = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
         
-        if(uuidPattern.test(id)){
+        if(isNaN(id)){
             await getPokemonFromDatabase(id,res)
             return 
         }
@@ -45,7 +45,7 @@ async function getPokemonFromDatabase(id,res){
         return res.status(200).json(pokemon)
 
     } catch (error) {
-        res.status(500).json({error: error.message})
+        res.status(501).json({error: error.message})
     }
 }
 
