@@ -13,9 +13,9 @@ async function getTypes(req, res) {
             const response = await axios(URL);
             const data = response.data;
 
-            const pokemonTypes = {};
+            const pokemonTypes = [];
             data.results.forEach(pokemonType => {
-                pokemonTypes[pokemonType.name] = pokemonType.name;
+                pokemonTypes.push(pokemonType.name);
             });
 
            
@@ -29,9 +29,9 @@ async function getTypes(req, res) {
         });
 
         
-        const typesObject = {};
+        const typesObject = [];
         typesFromDatabase.forEach(type => {
-            typesObject[type.name] = type.name;
+            typesObject.push(type.name);
         });
 
         res.status(200).json(typesObject);
