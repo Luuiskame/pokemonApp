@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Filters from "../Filters/Filters";
 
 
 function Header(){
@@ -7,6 +8,7 @@ function Header(){
             <Link to='/'>
             <button>Landing page</button>
             </Link>
+            <Filters/>
         </header>
     )
 }

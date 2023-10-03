@@ -1,4 +1,4 @@
-import { GET_POKEMON_BY_NAME, GET_POKEMONS } from "./actinon-types";
+import { GET_POKEMON_BY_NAME, GET_POKEMONS,GET_ALL_TYPES, ORDER, ORDER_BY_TYPE } from "./actinon-types";
 import axios from 'axios'
 
 
@@ -34,4 +34,36 @@ export const getPokemonByName = (name)=> async (dispatch)=>{
         window.alert(error)
     }
 }
+
+export const getAllTypes = ()=> async (dispatch)=>{
+    try {
+        const response = await axios("http://localhost:3001/pokecards/type")
+        const data = response.data
+        // console.log(data)
+
+        dispatch({
+            type: GET_ALL_TYPES,
+            payload: data
+        })
+    } catch (error) {
+        
+    }
+}
+
+//? filters
+
+export const orderCards = (order)=>{
+    return {
+        type: ORDER,
+        payload: order
+    }
+}
+
+export const orderByType = (type)=>{
+    return {
+        type: ORDER_BY_TYPE,
+        payload: type
+    }
+}
+
 
