@@ -1,4 +1,4 @@
-import { GET_ALL_TYPES, GET_POKEMON_BY_NAME, GET_POKEMONS, ORDER, ORDER_BY_TYPE } from "./actinon-types";
+import { FILTER_ALPHABETICALLY, GET_ALL_TYPES, GET_POKEMON_BY_NAME, GET_POKEMONS, ORDER, ORDER_BY_TYPE, RESET_FILTER } from "./actinon-types";
 
 const initialState = {
     pokemons: [],
@@ -51,6 +51,25 @@ const reducer = (state = initialState, action)=>{
                         ...state,
                         pokemons: filterdByType
                     }
+
+                case FILTER_ALPHABETICALLY:
+                    let filteredPokemons;
+                    if (action.payload === 'asc') {
+                        filteredPokemons = state.allPokemons.slice().sort((a, b) => a.name.localeCompare(b.name));
+                    } else if (action.payload === 'desc') {
+                        filteredPokemons = state.allPokemons.slice().sort((a, b) => b.name.localeCompare(a.name));
+                    }
+                    return {
+                        ...state,
+                        pokemons: filteredPokemons,
+                    };
+
+                    case RESET_FILTER:
+                        return {
+                            ...state,
+                            pokemons: [...state.allPokemons]
+                        }
+                        
                 
             default:
                 return state
