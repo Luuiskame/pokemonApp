@@ -55,9 +55,9 @@ const reducer = (state = initialState, action)=>{
                 case FILTER_ALPHABETICALLY:
                     let filteredPokemons;
                     if (action.payload === 'asc') {
-                        filteredPokemons = state.allPokemons.slice().sort((a, b) => a.name.localeCompare(b.name));
+                        filteredPokemons = state.pokemons.slice().sort((a, b) => a.name.localeCompare(b.name));
                     } else if (action.payload === 'desc') {
-                        filteredPokemons = state.allPokemons.slice().sort((a, b) => b.name.localeCompare(a.name));
+                        filteredPokemons = state.pokemons.slice().sort((a, b) => b.name.localeCompare(a.name));
                     }
                     return {
                         ...state,

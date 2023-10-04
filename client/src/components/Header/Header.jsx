@@ -9,6 +9,9 @@ function Header(){
             <button>Landing page</button>
             </Link>
             <Filters/>
+            <Link to="/createpokemon">
+            <button>Create Pokemon</button>
+            </Link>
         </header>
     )
 }
