@@ -1,11 +1,12 @@
 const axios = require("axios")
+const {Pokemon} = require("../db")
 
 
 // this functino works as a helper function that allows us to send the pokemon in this structure that we'll eventually use in our frontend
 async function getPokemon(url){
     try {
         const response = await axios(url)
-        const data = response.data
+        const data = response.data 
 
 
         const pokemonData = {
@@ -13,7 +14,7 @@ async function getPokemon(url){
             name: data.name,
             image: data.sprites.front_default,
             hp: data.stats[0].base_stat,
-            attack: data.stats[1].base_stat,
+            attack: data.stats[1].base_stat, 
             defense: data.stats[2].base_stat,
             speed: data.stats[5].base_stat,
             type: data.types[0].type.name,
@@ -37,8 +38,6 @@ async function getAllPokemon(req,res){
         const data = response.data
         // results is an array with the name and url properties inside
         const pokemonList = data.results
-
-
 
         const pokemonDataList = []
 
